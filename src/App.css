@@ -8,22 +8,11 @@
 
     grid-template-rows: 60px 1fr;
     grid-template-columns: 2fr 10fr;
+    grid-row-gap: 6px;
+    grid-column-gap: 6px;
 }
 
-.header {
-    background-color: teal;
-    grid-area: header;
-}
-.header img {
-    width: 50px;
-}
 
-.nav {
-    grid-area: nav;
-    background-color: #61c4c4;
-}
 
-.content {
-    grid-area: content;
-    background-color: #28bbbb;
-}
+
+
