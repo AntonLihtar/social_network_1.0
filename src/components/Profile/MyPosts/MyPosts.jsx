@@ -2,21 +2,30 @@ import React from 'react';
 import classes from "./MyPosts.module.css"
 import Post from "./Post/Post";
 
-const MyPosts = () => {
+const MyPosts = ({posts}) => {
+
     return (
       <div className={classes.content}>
-          <div>My posts
+          <div>
+              <h3>My posts</h3>
+
               <div>
-                  <textarea name="" id="" cols="30" rows="3"></textarea>
-                  <button>add post</button>
-                  <button>remove</button>
+                  <div>
+                      <textarea name="" id="" cols="30" rows="3"/>
+                  </div>
+                  <div>
+                      <button>add post</button>
+                  </div>
               </div>
 
               <div className={classes.posts}>
-                  <Post  message="Hello , this is 1 message" likesCount="10"/>
-                  <Post message="Post #2 good" likesCount="3"/>
-                  <Post message="Post #3 " likesCount="64"/>
-                  <Post message="Post 4 goodbye" likesCount="30"/>
+                  {posts.map(post => (
+                    <Post
+                      key={post.id}
+                      message={post.message}
+                      likesCount={post.likesCount}
+                    />
+                  ))}
               </div>
           </div>
       </div>

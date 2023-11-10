@@ -3,10 +3,11 @@
     background-color: #61c4c4;
 }
 
-.item {
+.item a{
     color: #fff;
+    text-decoration: none;
 }
 
-.item.active {
+.item a.active {
     color: gold;
 }

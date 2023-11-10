@@ -12,6 +12,11 @@
     grid-column-gap: 6px;
 }
 
+.app-wrapper-content {
+    grid-area: content;
+    background-color: #28bbbb;
+}
+
 
 
 

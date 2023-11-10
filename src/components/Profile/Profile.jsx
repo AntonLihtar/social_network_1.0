@@ -1,17 +1,13 @@
 import React from 'react';
 import classes from "./Profile.module.css"
 import MyPosts from "./MyPosts/MyPosts";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-const Profile = () => {
+const Profile = ({posts}) => {
     return (
       <div className={classes.content}>
-          <div>
-              <img src="https://www.fonedog.com/images/photo-compress/image-compressor-image.jpg" alt=""/>
-          </div>
-          <div>
-              ava+ description
-          </div>
-          <MyPosts/>
+          <ProfileInfo/>
+          <MyPosts posts={posts}/>
       </div>
     );
 };
