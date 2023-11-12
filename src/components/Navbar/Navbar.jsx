@@ -2,7 +2,7 @@ import React from 'react';
 import classes from "./Navbar.module.css"
 import {NavLink} from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (props) => {
     return (
       <nav className={classes.nav}>
           <div className={classes.item}>
@@ -16,14 +16,30 @@ const Navbar = () => {
               </NavLink>
           </div>
           <div className={classes.item}>
-              <a>News</a>
+              <NavLink>News</NavLink>
           </div>
           <div className={classes.item}>
-              <a>Music</a>
+              <NavLink>Music</NavLink>
           </div>
-          <div className={classes.item}>
-              <a>Setting</a>
+          <div className={classes.item + ' ' + classes.friends}>
+              <NavLink>Friends</NavLink>
+              <div className={classes.friendsWrapper}>
+                  {props.friends.map(fr => (
+                    <div
+                      key={fr.id}
+                      className={classes.friendWrap}
+                    >
+                        <img src={fr.img} alt="ava"/>
+                        <div>{fr.name}</div>
+                    </div>
+                  ))}
+              </div>
           </div>
+
+          <div className={classes.item + ' ' + classes.setting}>
+              <NavLink>Setting</NavLink>
+          </div>
+
       </nav>
     );
 };

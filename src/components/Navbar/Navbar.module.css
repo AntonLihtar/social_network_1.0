@@ -1,13 +1,52 @@
 .nav {
     grid-area: nav;
     background-color: #61c4c4;
+    padding: 10px;
+    position: relative;
 }
 
-.item a{
+.item {
+    color: #fff;
+    text-decoration: none;
+}
+
+.item a {
+    font-size: 20px;
     color: #fff;
     text-decoration: none;
 }
 
 .item a.active {
     color: gold;
+}
+
+
+.friends {
+    margin-top: 20px;
+    font-weight: bold;
+    border: 1px solid #fff;
+    padding: 0 10px;
+}
+.friends a {
+    display: block;
+    text-align: center;
+}
+
+.friendsWrapper {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.friendWrap {
+
+}
+.friendWrap img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.setting {
+    margin-top: 30px;
 }

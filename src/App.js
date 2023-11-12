@@ -3,20 +3,27 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
-import { Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 
 function App(props) {
     return (
       <div className="app-wrapper">
           <Header/>
-          <Navbar/>
+          <Navbar friends={props.state.friendsData.friends}/>
           <div className="app-wrapper-content">
               <Routes>
-                  <Route path="/profile" element={<Profile posts={props.posts}/>}/>
-                  <Route path="/dialogs/*" element={<Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
+                  <Route path="/profile" element={
+                      <Profile
+                        profilePages={props.state.profilePages}
+                        addPost={props.addPost}
+                        setPostText={props.setPostText}
+                      />}/>
+                  <Route path="/dialogs/*"
+                         element={<Dialogs
+                           state={props.state.dialogPages}
+                         />}
+                  />
               </Routes>
-              {/*<Dialogs/>*/}
-              {/*<Profile/>*/}
           </div>
 
       </div>

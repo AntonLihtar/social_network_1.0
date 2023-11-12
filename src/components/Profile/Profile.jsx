@@ -3,11 +3,16 @@ import classes from "./Profile.module.css"
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-const Profile = ({posts}) => {
+const Profile = ({profilePages, addPost, setPostText}) => {
     return (
       <div className={classes.content}>
           <ProfileInfo/>
-          <MyPosts posts={posts}/>
+          <MyPosts
+            posts={profilePages.posts}
+            newPostText={profilePages.newPostText}
+            addPost={addPost}
+            setPostText={setPostText}
+          />
       </div>
     );
 };

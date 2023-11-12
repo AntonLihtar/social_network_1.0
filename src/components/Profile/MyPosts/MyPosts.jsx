@@ -2,7 +2,13 @@ import React from 'react';
 import classes from "./MyPosts.module.css"
 import Post from "./Post/Post";
 
-const MyPosts = ({posts}) => {
+const MyPosts = ({posts, addPost, newPostText, setPostText}) => {
+
+    const refTextArea = React.createRef()
+
+    const onchangeTextarea = () => {
+        setPostText(refTextArea.current.value)
+    }
 
     return (
       <div className={classes.content}>
@@ -11,10 +17,14 @@ const MyPosts = ({posts}) => {
 
               <div>
                   <div>
-                      <textarea name="" id="" cols="30" rows="3"/>
+                      <textarea
+                        onChange={onchangeTextarea}
+                        ref={refTextArea}
+                        value={newPostText}
+                      />
                   </div>
                   <div>
-                      <button>add post</button>
+                      <button onClick={addPost}>add post</button>
                   </div>
               </div>
 
