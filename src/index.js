@@ -15,13 +15,13 @@ export const rerenderEntireTree = (state) => {
           <BrowserRouter>
               <App
                 state={state}
-                addPost={store.addPost.bind(store)}
-                setPostText={store.setPostText.bind(store)}
+                dispatch={store.dispatch.bind(store)}
               />
           </BrowserRouter>
       </React.StrictMode>
     );
 }
-rerenderEntireTree(store.getState())
+
+rerenderEntireTree(store._state)
 
 store.subscribe(rerenderEntireTree)

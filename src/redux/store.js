@@ -1,4 +1,7 @@
-let store = {
+export const ADD_POST = "ADD_POST";
+export const SET_POST_TEXT = "SET_POST_TEXT";
+
+const store = {
     _state: {
         profilePages: {
             posts: [
@@ -52,30 +55,49 @@ let store = {
             ]
         }
     },
+    _callSubscriber() {
+        console.log('State was changed ')
+    },
 
     getState() {
         return this._state
     },
-    _callSubscriber() {
-        console.log('State was changed ')
-    },
-    addPost() {
-        const newPost = {
-            id: this._state.profilePages.posts.length + 1,
-            message: this._state.profilePages.newPostText,
-            likesCount: 0
-        }
-        this._state.profilePages.posts.push(newPost)
-
-        this._state.profilePages.newPostText = ''
-        this._callSubscriber()
-    },
-    setPostText(newMessage) {
-        this._state.profilePages.newPostText = newMessage
-        this._callSubscriber()
-    },
     subscribe(observer) {
         this._callSubscriber = observer
+    },
+
+    dispatch(action) {
+        if (action.type === ADD_POST) {
+            const newPost = {
+                id: this._state.profilePages.posts.length + 1,
+                message: this._state.profilePages.newPostText,
+                likesCount: 0
+            }
+            this._state.profilePages.posts.push(newPost)
+
+            this._state.profilePages.newPostText = ''
+            console.log(this._state)
+            this._callSubscriber(this._state)
+        } else if (action.type === SET_POST_TEXT) {
+            this._state.profilePages.newPostText = action.newMessage
+            this._callSubscriber(this._state)
+        } else
+            return this._state
+    }
+}
+
+
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST
+    }
+}
+
+export const setPostMessageActionCreator = (text) => {
+
+    return {
+        type: SET_POST_TEXT,
+        newMessage: text
     }
 }
 

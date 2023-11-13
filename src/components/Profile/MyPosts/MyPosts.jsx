@@ -1,13 +1,20 @@
 import React from 'react';
 import classes from "./MyPosts.module.css"
 import Post from "./Post/Post";
+import {addPostActionCreator, setPostMessageActionCreator} from "../../../redux/store";
 
-const MyPosts = ({posts, addPost, newPostText, setPostText}) => {
+
+const MyPosts = ({posts, newPostText, dispatch}) => {
 
     const refTextArea = React.createRef()
 
     const onchangeTextarea = () => {
-        setPostText(refTextArea.current.value)
+        const text = refTextArea.current.value
+        dispatch(setPostMessageActionCreator(text))
+    }
+
+    const addPost = () => {
+        dispatch(addPostActionCreator())
     }
 
     return (
