@@ -2,37 +2,55 @@ import React from 'react';
 import classes from "./Dialogs.module.css"
 import DialogsItem from "./DialogsItem/DialogsItem";
 import Message from "./Message/Message";
+import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogsReducer";
 
-const Dialogs = ({state}) => {
+const Dialogs = (props) => {
     const refTextArea = React.createRef()
 
-    const readRefValue=()=>{
-        alert(refTextArea.current.value)
+    const dialogsElement = props.state.dialogs.map(item => (
+      <DialogsItem
+        key={item.id}
+        name={item.name}
+        id={item.id}
+        imgPath={item.imgPath}
+      />
+    ))
+
+    const messagesElements = props.state.messages.map(mes => (
+      <Message
+        key={mes.id}
+        id={mes.id}
+        text={mes.text}
+      />
+    ))
+
+    const newMessageBody = props.state.newMessageBody
+
+    const readRefValue = () => {
+        props.dispatch(sendMessageCreator())
     }
+
+    const onNewMessageChange = (e) => {
+        const body = e.target.value;
+        props.dispatch(updateNewMessageBodyCreator(body))
+    }
+
     return (
       <div className={classes.dialogsWrapper}>
           <div className={classes.dialogs}>
-              {state.dialogs.map(item => (
-                <DialogsItem
-                  key={item.id}
-                  name={item.name}
-                  id={item.id}
-                  imgPath={item.imgPath}
-                />)
-              )}
+              {dialogsElement}
           </div>
+
           <div className={classes.messages}>
-              {state.messages.map(mes => (
-                <Message
-                  key={mes.id}
-                  id={mes.id}
-                  text={mes.text}
-                  author={mes.author}
-                />)
-              )}
+              {messagesElements}
               <div>
                   <div>
-                      <textarea ref={refTextArea} cols="30" rows="3"/>
+                      <textarea
+                        ref={refTextArea}
+                        onChange={onNewMessageChange}
+                        value={newMessageBody}
+                        placeholder="Enter new message"
+                      />
                   </div>
                   <div>
                       <button onClick={readRefValue}>send</button>

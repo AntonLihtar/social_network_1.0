@@ -1,5 +1,6 @@
-export const ADD_POST = "ADD_POST";
-export const SET_POST_TEXT = "SET_POST_TEXT";
+import profileReducer from "./profileReducer";
+import dialogsReducer from "./dialogsReducer";
+import friendsReducer from "./friendsReducer";
 
 const store = {
     _state: {
@@ -41,11 +42,12 @@ const store = {
                 },
             ],
             messages: [
-                {id: 1, author: "author", text: "Привет Ваня как дела?"},
-                {id: 2, author: "Vanya", text: "Салют, здоров как бык, сегодня выиграл лотерею! Ты как,"},
-                {id: 3, author: "author", text: "У меня Все здорово! "},
-                {id: 4, author: "Vanya", text: "Чем занят?"}
-            ]
+                {id: 1, text: "Привет Ваня как дела?"},
+                {id: 2, text: "Салют, здоров как бык, сегодня выиграл лотерею! Ты как,"},
+                {id: 3, text: "У меня Все здорово! "},
+                {id: 4, text: "Чем занят?"}
+            ],
+            newMessageBody: ""
         },
         friendsData: {
             friends: [
@@ -67,37 +69,11 @@ const store = {
     },
 
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            const newPost = {
-                id: this._state.profilePages.posts.length + 1,
-                message: this._state.profilePages.newPostText,
-                likesCount: 0
-            }
-            this._state.profilePages.posts.push(newPost)
+        this._state.profilePages = profileReducer(this._state.profilePages, action)
+        this._state.dialogPages = dialogsReducer(this._state.dialogPages, action)
+        this._state.friendsData = friendsReducer(this._state.friendsData, action)
 
-            this._state.profilePages.newPostText = ''
-            console.log(this._state)
-            this._callSubscriber(this._state)
-        } else if (action.type === SET_POST_TEXT) {
-            this._state.profilePages.newPostText = action.newMessage
-            this._callSubscriber(this._state)
-        } else
-            return this._state
-    }
-}
-
-
-export const addPostActionCreator = () => {
-    return {
-        type: ADD_POST
-    }
-}
-
-export const setPostMessageActionCreator = (text) => {
-
-    return {
-        type: SET_POST_TEXT,
-        newMessage: text
+        this._callSubscriber(this._state)
     }
 }
 

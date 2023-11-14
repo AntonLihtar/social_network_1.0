@@ -17,10 +17,11 @@ function App(props) {
                         profilePages={props.state.profilePages}
                         dispatch={props.dispatch}
                       />}/>
-                  <Route path="/dialogs/*"
-                         element={<Dialogs
-                           state={props.state.dialogPages}
-                         />}
+                  <Route path="/dialogs/*" element={
+                      <Dialogs
+                        state={props.state.dialogPages}
+                        dispatch={props.dispatch}
+                      />}
                   />
               </Routes>
           </div>
