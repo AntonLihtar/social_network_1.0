@@ -4,7 +4,6 @@ import Post from "./Post/Post";
 
 
 const MyPosts = (props) => {
-
     const refTextArea = React.createRef()
 
     const onPostChange = () => {

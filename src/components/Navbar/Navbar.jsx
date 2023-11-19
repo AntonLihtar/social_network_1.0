@@ -23,17 +23,17 @@ const Navbar = (props) => {
           </div>
           <div className={classes.item + ' ' + classes.friends}>
               <NavLink>Friends</NavLink>
-              <div className={classes.friendsWrapper}>
-                  {props.friends.map(fr => (
-                    <div
-                      key={fr.id}
-                      className={classes.friendWrap}
-                    >
-                        <img src={fr.img} alt="ava"/>
-                        <div>{fr.name}</div>
-                    </div>
-                  ))}
-              </div>
+              {/*<div className={classes.friendsWrapper}>*/}
+              {/*    {props.friends.map(fr => (*/}
+              {/*      <div*/}
+              {/*        key={fr.id}*/}
+              {/*        className={classes.friendWrap}*/}
+              {/*      >*/}
+              {/*          <img src={fr.img} alt="ava"/>*/}
+              {/*          <div>{fr.name}</div>*/}
+              {/*      </div>*/}
+              {/*    ))}*/}
+              {/*</div>*/}
           </div>
 
           <div className={classes.item + ' ' + classes.setting}>

@@ -6,20 +6,21 @@ import {Route, Routes} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 function App(props) {
-    const state = props.store.getState()
+    // const state = props.store.getState()
     return (
       <div className="app-wrapper">
           <Header/>
-          <Navbar friends={state.friendsData.friends}/>
+          {/*<Navbar friends={state.friendsData.friends}/>*/}
+          <Navbar/>
           <div className="app-wrapper-content">
               <Routes>
                   <Route
                     path="/profile"
-                    element={<Profile store={props.store}/>}
+                    element={<Profile/>}
                   />
                   <Route
                     path="/dialogs/*"
-                    element={<DialogsContainer store={props.store}/>}
+                    element={<DialogsContainer/>}
                   />
               </Routes>
           </div>
