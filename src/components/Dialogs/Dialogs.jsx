@@ -7,7 +7,7 @@ import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialo
 const Dialogs = (props) => {
     const refTextArea = React.createRef()
 
-    const dialogsElements = props.dialogPages.dialogs.map(item => (
+    const dialogsElements = props.dialogPage.dialogs.map(item => (
       <DialogsItem
         key={item.id}
         name={item.name}
@@ -16,7 +16,7 @@ const Dialogs = (props) => {
       />
     ))
 
-    const messagesElements = props.dialogPages.messages.map(mes => (
+    const messagesElements = props.dialogPage.messages.map(mes => (
       <Message
         key={mes.id}
         id={mes.id}
@@ -24,7 +24,7 @@ const Dialogs = (props) => {
       />
     ))
 
-    const newMessageBody = props.dialogPages.newMessageBody
+    const newMessageBody = props.dialogPage.newMessageBody
 
     const readRefValue = () => {
         props.sendMessage()

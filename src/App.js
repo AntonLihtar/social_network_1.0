@@ -4,13 +4,12 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import {Route, Routes} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 function App(props) {
-    // const state = props.store.getState()
     return (
       <div className="app-wrapper">
           <Header/>
-          {/*<Navbar friends={state.friendsData.friends}/>*/}
           <Navbar/>
           <div className="app-wrapper-content">
               <Routes>
@@ -21,6 +20,10 @@ function App(props) {
                   <Route
                     path="/dialogs/*"
                     element={<DialogsContainer/>}
+                  />
+                  <Route
+                    path="/users"
+                    element={<UsersContainer/>}
                   />
               </Routes>
           </div>
