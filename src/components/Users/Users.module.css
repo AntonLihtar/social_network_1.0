@@ -1,4 +1,13 @@
-.photoBlock img{
+.photoBlock img {
     width: 80px;
     height: 100px;
 }
+
+.selectedPage {
+    cursor: pointer;
+}
+
+.activeSelectedPage {
+    font-weight: bold;
+}
+
