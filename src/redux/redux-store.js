@@ -15,4 +15,6 @@ const reducers = combineReducers({
 //создаем стор// он автоматически создаст внутри стейт со свойствами из reducers
 const store = createStore(reducers)
 
+window.store = store
+
 export default store
