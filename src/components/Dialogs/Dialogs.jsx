@@ -2,7 +2,7 @@ import React from 'react';
 import classes from "./Dialogs.module.css"
 import DialogsItem from "./DialogsItem/DialogsItem";
 import Message from "./Message/Message";
-import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogsReducer";
+import {Navigate} from "react-router-dom";
 
 const Dialogs = (props) => {
     const refTextArea = React.createRef()

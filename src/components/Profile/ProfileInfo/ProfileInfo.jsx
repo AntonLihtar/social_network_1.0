@@ -21,10 +21,12 @@ const ProfileInfo = (props) => {
                   {props.profile.aboutMe}
               </div>
               <div>
-                   <strong>контакты:</strong>
+                  <strong>контакты:</strong>
                   <br/>
                   {Object.keys(props.profile.contacts).map(e => (
-                    <div>{e}: <strong>{props.profile.contacts[e]}</strong></div>
+                    <div key={e}>
+                        {e}: <strong>{props.profile.contacts[e]}</strong>
+                    </div>
                   ))}
               </div>
           </div>

@@ -1,13 +1,14 @@
 import React from 'react';
 import Profile from "./Profile";
-import axios from "axios";
 import {connect} from "react-redux";
-import {setUserProfile} from "../../redux/profileReducer";
+import {compose} from "redux";
+import {getProfile} from "../../redux/profileReducer";
 import {
     useLocation,
     useNavigate,
     useParams,
 } from "react-router-dom";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 // wrapper to use react router's v6 hooks in class component(to use HOC pattern, like in router v5)
 // оболочка для использования перехватчиков реакции маршрутизатора v6 в компоненте класса
@@ -32,15 +33,11 @@ function withRouter(Component) {
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
-
         let id = this.props.router.params.userId
         if (!id) {
             id = 2
         }
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${id}`)
-          .then(response => {
-              this.props.setUserProfile(response.data)
-          })
+        this.props.getProfile(id)
     }
 
     render() {
@@ -53,4 +50,11 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, {setUserProfile})(withRouter(ProfileContainer))
+// const authRedirectComponent = withAuthRedirect(ProfileContainer)
+// export default connect(mapStateToProps, {getProfile})(withRouter(authRedirectComponent))
+
+export default compose(
+  connect(mapStateToProps, {getProfile}),
+  withRouter,
+  withAuthRedirect
+)(ProfileContainer)
