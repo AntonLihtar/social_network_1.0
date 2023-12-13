@@ -2,10 +2,37 @@ import React from 'react';
 import classes from "./Dialogs.module.css"
 import DialogsItem from "./DialogsItem/DialogsItem";
 import Message from "./Message/Message";
-import {Navigate} from "react-router-dom";
+import {Field, reduxForm} from "redux-form";
+import {FormControl} from "../common/FormControls/FormsControls";
+import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
+
+const maxLength50 = maxLengthCreator(50)
+
+const DialogsForm = (props) => {
+    return (
+      <form onSubmit={props.handleSubmit}>
+          <div>
+              <Field name="newMessageBody"
+                     component={FormControl}
+                     child="input"
+                     validate={[requiredField, maxLength50]}
+                     placeholder="Enter new message"
+              />
+          </div>
+          <div>
+              <button>send</button>
+          </div>
+      </form>
+    )
+}
+
+const DialogsReduxForm = reduxForm({
+    // a unique name for the form
+    form: 'dialogs'
+})(DialogsForm)
+
 
 const Dialogs = (props) => {
-    const refTextArea = React.createRef()
 
     const dialogsElements = props.dialogPage.dialogs.map(item => (
       <DialogsItem
@@ -24,15 +51,10 @@ const Dialogs = (props) => {
       />
     ))
 
-    const newMessageBody = props.dialogPage.newMessageBody
 
-    const readRefValue = () => {
-        props.sendMessage()
-    }
-
-    const onNewMessageChange = (e) => {
-        const body = e.target.value;
-        props.onNewMessageChange(body)
+    const submitForm = (formData) => {
+        console.log(formData.newMessageBody)
+        props.sendMessage(formData.newMessageBody)
     }
 
     return (
@@ -43,19 +65,7 @@ const Dialogs = (props) => {
 
           <div className={classes.messages}>
               {messagesElements}
-              <div>
-                  <div>
-                      <textarea
-                        ref={refTextArea}
-                        onChange={onNewMessageChange}
-                        value={newMessageBody}
-                        placeholder="Enter new message"
-                      />
-                  </div>
-                  <div>
-                      <button onClick={readRefValue}>send</button>
-                  </div>
-              </div>
+              <DialogsReduxForm onSubmit={submitForm} props={props}/>
           </div>
       </div>);
 };

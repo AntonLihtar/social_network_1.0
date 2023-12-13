@@ -1,6 +1,8 @@
 import React from 'react';
 import classes from "./ProfileInfo.module.css"
 import Preloader from "../../common/Preloader/Preloader";
+import ProfileStatus from "./ProfileStatus.jsx";
+import {setProfileStatus} from "../../../redux/profileReducer";
 
 const ProfileInfo = (props) => {
 
@@ -10,12 +12,10 @@ const ProfileInfo = (props) => {
 
     return (
       <div>
-          <div>
-              <img src="https://www.fonedog.com/images/photo-compress/image-compressor-image.jpg" alt=""/>
-          </div>
           <div className={classes.description}>
               <div>
                   <img src={props.profile.photos.large} alt=""/>
+                  <ProfileStatus status={props.profileStatus} setProfileStatus={props.setProfileStatus}/>
               </div>
               <div>
                   {props.profile.aboutMe}

@@ -5,6 +5,8 @@ import friendsReducer from "./friendsReducer";
 import usersReducer from "./usersReducer";
 import authReducer from "./authReducer";
 import thunk  from 'redux-thunk'
+import { reducer as formReducer } from 'redux-form'
+import appReducer from "./appReducer";
 
 //стору нужны редусеры / чтобы работать со стейтом
 const reducers = combineReducers({
@@ -12,7 +14,9 @@ const reducers = combineReducers({
     dialogPage: dialogsReducer,
     friendsData: friendsReducer,
     usersPage: usersReducer,
-    auth: authReducer
+    auth: authReducer,
+    form: formReducer,
+    app: appReducer
 })
 
 //создаем стор// он автоматически создаст внутри стейт со свойствами из reducers

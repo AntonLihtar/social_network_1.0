@@ -34,40 +34,27 @@ const initialState = {
         {id: 2, text: "Салют, здоров как бык, сегодня выиграл лотерею! Ты как,"},
         {id: 3, text: "У меня Все здорово! "},
         {id: 4, text: "Чем занят?"}
-    ],
-    newMessageBody: ""
+    ]
 }
 
 const dialogsReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_BODY:
-            return {
-                ...state,
-                newMessageBody: action.body
-            }
         case SEND_MESSAGE:
-            let body = state.newMessageBody
+            let body = action.newMessageBody
             return {
                 ...state,
-                messages: [...state.messages, {id: 6, text: body}],
-                newMessageBody: ""
+                messages: [...state.messages, {id: 6, text: body}]
             }
         default:
             return state
     }
 }
 
-export const sendMessageCreator = () => {
+export const sendMessageCreator = (newMessageBody) => {
     return {
-        type: SEND_MESSAGE
-    }
-}
-
-export const updateNewMessageBodyCreator = (body) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_BODY,
-        body: body
+        type: SEND_MESSAGE,
+        newMessageBody
     }
 }
 
